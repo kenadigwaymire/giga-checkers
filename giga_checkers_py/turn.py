@@ -1,0 +1,1 @@
+def move_piece(piece):
