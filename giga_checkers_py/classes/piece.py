@@ -2,11 +2,12 @@ import pygame
 
 class Piece:
 
-    def __init__(self, color, piece_type, position, spritesheet, cols, rows):
+    def __init__(self, color, piece_type, board, piece_name, position, spritesheet, cols, rows):
         self.color = color
         self.type = piece_type
         self.kinged = False
         self.position = position
+        self.piece_name = piece_name
         self.alive = True
         self.piece_name = ""
         pygame.sprite.Sprite.__init__(self)
@@ -34,9 +35,8 @@ class Piece:
 
         self.cells = list([(i % cols * w, i // cols * h, w, h) for i in range(self.cell_count)])
 
-    def draw(self, surface, piece_name, coords):
-        self.piece_name = piece_name
-        piece_index = self.pieces[piece_name]
+    def draw(self, surface, coords):
+        piece_index = self.pieces[self.piece_name]
         surface.blit(self.spritesheet, coords, self.cells[piece_index])
 
     def set_color(self, color):
