@@ -8,7 +8,7 @@ class Piece:
         self.kinged = False
         self.position = position
         self.alive = True
-        self.moves = []
+        self.piece_name = ""
         pygame.sprite.Sprite.__init__(self)
         self.pieces = {
             "red_mini_oneway": 1,
@@ -35,6 +35,7 @@ class Piece:
         self.cells = list([(i % cols * w, i // cols * h, w, h) for i in range(self.cell_count)])
 
     def draw(self, surface, piece_name, coords):
+        self.piece_name = piece_name
         piece_index = self.pieces[piece_name]
         surface.blit(self.spritesheet, coords, self.cells[piece_index])
 
@@ -92,8 +93,3 @@ class Piece:
             print("Piece is already alive")
             # put some error here
     
-    def get_possible_moves(self):
-        return self.moves
-
-    def add_move(self, move_pos):
-        self.moves.append(move_pos)
